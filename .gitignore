@@ -2,6 +2,8 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+/OOPProjektPCShop.iml
+/.idea/
 
 ### Eclipse ###
 .apt_generated
@@ -27,7 +29,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-/OOPProjektPCShop.iml
-/.idea/
+
+### my ignores ###
 /db/
 /lib/
