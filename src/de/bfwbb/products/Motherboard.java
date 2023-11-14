@@ -1,3 +1,7 @@
+package de.bfwbb.products;
+
+import de.bfwbb.shop.ShopCtrl;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

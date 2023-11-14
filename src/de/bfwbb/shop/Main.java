@@ -1,9 +1,13 @@
+package de.bfwbb.shop;
+
+import de.bfwbb.products.Product;
+
 import java.util.ArrayList;
 
 /**
  * @author NullArgumentException
  */
-public class MainShop {
+public class Main {
 
     public static void main(String[] args) {
         ArrayList<Product> pList = new ArrayList<>();

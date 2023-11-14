@@ -1,3 +1,7 @@
+package de.bfwbb.products;
+
+import de.bfwbb.shop.ShopCtrl;
+
 import java.util.Scanner;
 
 /**
@@ -14,7 +18,7 @@ public non-sealed class Keyboard extends Product {
         this.hasBluetooth = hasBluetooth;
     }
 
-    protected void editProperty(int property) {
+    public void editProperty(int property) {
         if (property <= super.getFieldCount()) super.editProperty(property);
         else {
             Scanner scan = new Scanner(System.in);

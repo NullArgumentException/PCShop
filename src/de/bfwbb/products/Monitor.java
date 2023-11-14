@@ -1,3 +1,7 @@
+package de.bfwbb.products;
+
+import de.bfwbb.shop.ShopCtrl;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -24,7 +28,7 @@ public non-sealed class Monitor extends Product {
         this.resolution = resolution;
     }
 
-    protected void editProperty(int property) {
+    public void editProperty(int property) {
         if (property <= super.getFieldCount()) super.editProperty(property);
         else {
             switch (property) {
@@ -33,7 +37,7 @@ public non-sealed class Monitor extends Product {
                     boolean retry;
                     do {
                         retry = false;
-                        System.out.println("Enter the Monitor's refresh rate: ");
+                        System.out.println("Enter the de.bfwbb.products.Monitor's refresh rate: ");
                         try {
                             setRefreshRate(scan.nextInt());
                         } catch (InputMismatchException e) {
@@ -48,7 +52,7 @@ public non-sealed class Monitor extends Product {
                 }
                 case 5 -> {
                     Scanner scan = new Scanner(System.in);
-                    System.out.println("Enter the Monitor's resolution: ");
+                    System.out.println("Enter the de.bfwbb.products.Monitor's resolution: ");
                     setResolution(scan.nextLine());
                     System.out.println("Resolution was set to: " + getResolution());
                     ShopCtrl.wait(500);

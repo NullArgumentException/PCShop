@@ -1,3 +1,7 @@
+package de.bfwbb.products;
+
+import de.bfwbb.shop.ShopCtrl;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -35,7 +39,7 @@ public sealed abstract class Product
     }
 
     // lets the user enter the property chosen in the menu selection
-    protected void editProperty(int property) {
+    public void editProperty(int property) {
         Scanner scan = new Scanner(System.in);
         switch (property) {
             case 1 -> {
@@ -51,15 +55,22 @@ public sealed abstract class Product
                 ShopCtrl.wait(500);
             }
             case 3 -> {
-                // TODO: add check for 0 value
                 boolean retry;
                 do {
                     retry = false;
                     System.out.println("Enter the price: ");
                     try {
-                        setPrice(scan.nextDouble());
+                        double value = scan.nextDouble();
+                        if (value == 0) {
+                            System.err.println("Please enter a number greater than zero.");
+                            retry = true;
+                            ShopCtrl.wait(500);
+                        } else {
+                            setPrice(value);
+                        }
                     } catch (InputMismatchException e) {
                         System.err.println("Wrong input, please enter a number.");
+                        scan.nextLine();
                         retry = true;
                         ShopCtrl.wait(500);
                     }
@@ -69,10 +80,6 @@ public sealed abstract class Product
             }
         }
         scan.close();
-    }
-
-    protected void checkProperties() {
-
     }
 
     // returns the amount of properties a Class/Object has
