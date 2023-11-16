@@ -41,5 +41,3 @@ public non-sealed class Keyboard extends Product {
         return super.getFieldCount() + getClass().getDeclaredFields().length;
     }
 }
-
-

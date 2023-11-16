@@ -2,7 +2,10 @@ package de.bfwbb.products;
 
 import de.bfwbb.shop.ShopCtrl;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -85,5 +88,21 @@ public sealed abstract class Product
     // returns the amount of properties a Class/Object has
     public int getFieldCount() {
         return getClass().getDeclaredFields().length;
+    }
+
+    public boolean checkForEmptyFields() {
+        List<Field> pList = Arrays.asList(getClass().getSuperclass().getDeclaredFields());
+        pList.addAll(Arrays.asList(getClass().getDeclaredFields()));
+        try {
+            for (Field p : pList) {
+                Object fieldValue = p.get(this);
+                if (fieldValue == null || (fieldValue instanceof Number && ((Number) fieldValue).doubleValue() == 0.0)) {
+                    return true;
+                }
+            }
+        } catch (IllegalAccessException e) {
+            System.err.println(e.getMessage());
+        }
+        return false;
     }
 }
