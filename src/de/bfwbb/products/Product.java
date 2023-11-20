@@ -7,29 +7,30 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  * @author NullArgumentException
  */
 public sealed abstract class Product
         permits Keyboard, Monitor, Motherboard, Mouse {
-    private String make;
+    private String brand;
     private String model;
     private double price;
 
-    public String getMake() {
-        return make;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setMake(String make) {
-        this.make = make;
+    private void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    private void setModel(String model) {
         this.model = model;
     }
 
@@ -37,18 +38,17 @@ public sealed abstract class Product
         return price;
     }
 
-    public void setPrice(double price) {
+    private void setPrice(double price) {
         this.price = price;
     }
 
     // lets the user enter the property chosen in the menu selection
-    public void editProperty(int property) {
-        Scanner scan = new Scanner(System.in);
+    public void editProperty(Scanner scan, int property) {
         switch (property) {
             case 1 -> {
-                System.out.println("Enter the make: ");
-                setMake(scan.nextLine());
-                System.out.println("Make was set to " + getMake());
+                System.out.println("Enter the brand: ");
+                setBrand(scan.nextLine());
+                System.out.println("Brand was set to " + getBrand());
                 ShopCtrl.wait(500);
             }
             case 2 -> {
@@ -82,19 +82,21 @@ public sealed abstract class Product
                 ShopCtrl.wait(500);
             }
         }
-        scan.close();
     }
 
     // returns the amount of properties a Class/Object has
     public int getFieldCount() {
-        return getClass().getDeclaredFields().length;
+        return getClass().getSuperclass().getDeclaredFields().length;
     }
 
     public boolean checkForEmptyFields() {
-        List<Field> pList = Arrays.asList(getClass().getSuperclass().getDeclaredFields());
-        pList.addAll(Arrays.asList(getClass().getDeclaredFields()));
+        List<Field> pList = Stream.concat(
+                Arrays.stream(getClass().getSuperclass().getDeclaredFields()),
+                Arrays.stream(getClass().getDeclaredFields())
+        ).toList();
         try {
             for (Field p : pList) {
+                p.setAccessible(true);
                 Object fieldValue = p.get(this);
                 if (fieldValue == null || (fieldValue instanceof Number && ((Number) fieldValue).doubleValue() == 0.0)) {
                     return true;
@@ -103,6 +105,7 @@ public sealed abstract class Product
         } catch (IllegalAccessException e) {
             System.err.println(e.getMessage());
         }
+        System.out.println("All properties were set.");
         return false;
     }
 }

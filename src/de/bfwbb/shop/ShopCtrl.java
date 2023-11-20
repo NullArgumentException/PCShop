@@ -37,7 +37,7 @@ public class ShopCtrl {
     public void mainMenu(Scanner scan) {
         System.out.printf("""
                 -------------------------------------------------------
-                PC-Shop             Main Menu   by: [%s]
+                 PC-Shop             Main Menu   by: [%s]
                 -------------------------------------------------------
                 1) Add Product
                 2) Edit Product
@@ -66,7 +66,7 @@ public class ShopCtrl {
     private void addProduct(Scanner scan) {
         System.out.println("""
                 -------------------------------------------------------
-                Choose the type of product to add
+                 Choose the type of product to add
                 -------------------------------------------------------
                 1) Keyboard
                 2) Monitor
@@ -107,14 +107,32 @@ public class ShopCtrl {
             wait(1000);
             addProduct(scan);
         }
+
+        System.out.println("Do you want to add another product? y/n");
+        switch (scan.next()) {
+            case "y", "Y" -> {
+                wait(1000);
+                addProduct(scan);
+            }
+            case "n", "N" -> {
+                System.out.println("Returning to main menu.");
+                wait(1000);
+                mainMenu(scan);
+            }
+            default -> {
+                System.err.println("Unknown input, try again.");
+                wait(500);
+                closeShop(scan);
+            }
+        }
     }
 
     private void editProduct(Scanner scan, Product product) {
         String menu = """
                 -------------------------------------------------------
-                Choose which property to edit
+                 Choose which property to edit
                 -------------------------------------------------------
-                1) Make
+                1) Brand
                 2) Model name
                 3) Price""";
 
@@ -157,7 +175,8 @@ public class ShopCtrl {
                     saveProduct(scan, product);
                 }
                 case Integer i when i <= product.getFieldCount() -> {
-                    product.editProperty(i);
+                    scan.nextLine();
+                    product.editProperty(scan, i);
                     wait(1000);
                     editProduct(scan, product);
                 }
@@ -165,6 +184,7 @@ public class ShopCtrl {
             }
         } catch (InputMismatchException e) {
             System.err.println("Input unrecognised, please choose a number from the list.");
+            scan.nextLine();
             wait(1000);
             editProduct(scan, product);
         }

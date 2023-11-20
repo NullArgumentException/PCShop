@@ -2,7 +2,6 @@ package de.bfwbb.products;
 
 import de.bfwbb.shop.ShopCtrl;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -15,37 +14,18 @@ public non-sealed class Motherboard extends Product {
         return chipset;
     }
 
-    public void setChipset(String chipset) {
+    private void setChipset(String chipset) {
         this.chipset = chipset;
     }
 
-    private void editProperty() {
-        try (Scanner scan = new Scanner(System.in)) {
-            switch (scan.nextInt()) {
-                case 1 -> {
-                    super.editProperty(1);
-                }
-                case 2 -> {
-                    super.editProperty(2);
-                }
-                case 3 -> {
-                    super.editProperty(3);
-                }
-                case 4 -> {
-                    System.out.println("Enter the chipset name: ");
-                    setChipset(scan.nextLine());
-                    System.out.println("Chipset was set to: " + getChipset());
-                    ShopCtrl.wait(500);
-                }
-            }
-        } catch (InputMismatchException e) {
-            System.err.println("Input unrecognised, please choose a number from the list.");
-            ShopCtrl.wait(1000);
-            editProperty();
+    public void editProperty(Scanner scan, int property) {
+        if (property > super.getFieldCount()) {
+            System.out.println("Enter the chipset name: ");
+            setChipset(scan.nextLine());
+            System.out.println("Chipset was set to: " + getChipset());
+            ShopCtrl.wait(500);
+        } else {
+            super.editProperty(scan, property);
         }
-    }
-
-    public int getFieldCount() {
-        return super.getFieldCount() + getClass().getDeclaredFields().length;
     }
 }

@@ -14,29 +14,33 @@ public non-sealed class Keyboard extends Product {
         return hasBluetooth;
     }
 
-    public void setHasBluetooth(boolean hasBluetooth) {
+    private void setHasBluetooth(boolean hasBluetooth) {
         this.hasBluetooth = hasBluetooth;
     }
 
-    public void editProperty(int property) {
-        if (property <= super.getFieldCount()) super.editProperty(property);
-        else {
-            Scanner scan = new Scanner(System.in);
+    @Override
+    public void editProperty(Scanner scan, int property) {
+        if (property > super.getFieldCount()) {
             System.out.println("Does the keyboard have bluetooth? y/n");
+
             switch (scan.next()) {
                 case "y", "Y" -> setHasBluetooth(true);
                 case "n", "N" -> setHasBluetooth(false);
                 default -> {
                     System.err.println("Input unrecognised, please try again.");
                     ShopCtrl.wait(500);
-                    editProperty(property);
+                    editProperty(scan, property);
                 }
             }
+
             System.out.println("Bluetooth was set to: " + getHasBluetooth());
-            scan.close();
+
+        } else {
+            super.editProperty(scan, property);
         }
     }
 
+    @Override
     public int getFieldCount() {
         return super.getFieldCount() + getClass().getDeclaredFields().length;
     }
