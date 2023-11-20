@@ -19,6 +19,14 @@ public non-sealed class Keyboard extends Product {
     }
 
     @Override
+    public String toString() {
+        return "Keyboard [" +
+                super.toString() +
+                ", Bluetooth= " + ((hasBluetooth) ? "yes" : "no") +
+                "]";
+    }
+
+    @Override
     public void editProperty(Scanner scan, int property) {
         if (property > super.getFieldCount()) {
             System.out.println("Does the keyboard have bluetooth? y/n");

@@ -18,6 +18,14 @@ public non-sealed class Motherboard extends Product {
         this.chipset = chipset;
     }
 
+    @Override
+    public String toString() {
+        return "Motherboard [" +
+                super.toString() +
+                ", Chipset= " + chipset +
+                "]";
+    }
+
     public void editProperty(Scanner scan, int property) {
         if (property > super.getFieldCount()) {
             System.out.println("Enter the chipset name: ");

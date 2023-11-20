@@ -42,6 +42,13 @@ public sealed abstract class Product
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Brand= " + brand +
+                ", Model= " + model +
+                ", Price= " + price;
+    }
+
     // lets the user enter the property chosen in the menu selection
     public void editProperty(Scanner scan, int property) {
         switch (property) {

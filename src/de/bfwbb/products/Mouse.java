@@ -18,6 +18,14 @@ public non-sealed class Mouse extends Product {
         isWireless = wireless;
     }
 
+    @Override
+    public String toString() {
+        return "Mouse [" +
+                super.toString() +
+                ", Wireless= " + ((isWireless) ? "yes" : "no") +
+                "]";
+    }
+
     public void editProperty(Scanner scan, int property) {
         if (property > super.getFieldCount()) {
             System.out.println("Is the mouse wireless? y/n");

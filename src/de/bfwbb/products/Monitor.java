@@ -28,6 +28,15 @@ public non-sealed class Monitor extends Product {
         this.resolution = resolution;
     }
 
+    @Override
+    public String toString() {
+        return "Monitor [" +
+                super.toString() +
+                ", Refresh rate= " + refreshRate +
+                ", Resolution= " + resolution +
+                "]";
+    }
+
     public void editProperty(Scanner scan, int property) {
         if (property > super.getFieldCount()) {
             switch (property) {
