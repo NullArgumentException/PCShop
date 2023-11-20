@@ -137,9 +137,7 @@ public class ShopCtrl {
                 3) Price""";
 
         switch (product) {
-            case null -> {
-                listProducts();
-            }
+            case null -> listProducts();
             case Keyboard p -> {
                 System.out.println(menu);
                 System.out.println("4) Bluetooth");
@@ -171,9 +169,7 @@ public class ShopCtrl {
                 -------------------------------------------------------""");
         try {
             switch ((Integer) scan.nextInt()) {
-                case 0 -> {
-                    saveProduct(scan, product);
-                }
+                case 0 -> saveProduct(scan, product);
                 case Integer i when i <= product.getFieldCount() -> {
                     scan.nextLine();
                     product.editProperty(scan, i);
