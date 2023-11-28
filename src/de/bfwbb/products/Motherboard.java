@@ -20,10 +20,7 @@ public non-sealed class Motherboard extends Product {
 
     @Override
     public String toString() {
-        return "Motherboard [" +
-                super.toString() +
-                ", Chipset= " + chipset +
-                "]";
+        return String.format("Motherboard [%s, Chipset: %s]", super.toString(), chipset);
     }
 
     public void editProperty(Scanner scan, int property) {

@@ -44,9 +44,7 @@ public sealed abstract class Product
 
     @Override
     public String toString() {
-        return "Brand= " + brand +
-                ", Model= " + model +
-                ", Price= " + price;
+        return String.format("Brand: %s, Model: %s, Price: %.2f€", brand, model, price);
     }
 
     // lets the user enter the property chosen in the menu selection
@@ -85,7 +83,7 @@ public sealed abstract class Product
                         ShopCtrl.wait(500);
                     }
                 } while (retry);
-                System.out.printf("Price was set to %.2f%n", getPrice());
+                System.out.printf("Price was set to %.2f€%n", getPrice());
                 ShopCtrl.wait(500);
             }
         }

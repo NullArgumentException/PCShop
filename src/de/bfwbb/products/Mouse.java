@@ -20,10 +20,7 @@ public non-sealed class Mouse extends Product {
 
     @Override
     public String toString() {
-        return "Mouse [" +
-                super.toString() +
-                ", Wireless= " + ((isWireless) ? "yes" : "no") +
-                "]";
+        return String.format("Mouse [%s, Wireless: %s]", super.toString(), ((isWireless) ? "yes" : "no"));
     }
 
     public void editProperty(Scanner scan, int property) {
@@ -40,7 +37,7 @@ public non-sealed class Mouse extends Product {
                 }
             }
 
-            System.out.println("Wireless was set to: " + getIsWireless());
+            System.out.println("Wireless was set to: " + (getIsWireless() ? "yes" : "no"));
 
         } else {
             super.editProperty(scan, property);

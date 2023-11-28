@@ -20,10 +20,7 @@ public non-sealed class Keyboard extends Product {
 
     @Override
     public String toString() {
-        return "Keyboard [" +
-                super.toString() +
-                ", Bluetooth= " + ((hasBluetooth) ? "yes" : "no") +
-                "]";
+        return String.format("Keyboard [%s, Bluetooth: %s]", super.toString(), ((hasBluetooth) ? "yes" : "no"));
     }
 
     @Override
@@ -41,7 +38,7 @@ public non-sealed class Keyboard extends Product {
                 }
             }
 
-            System.out.println("Bluetooth was set to: " + getHasBluetooth());
+            System.out.println("Bluetooth was set to: " + (getHasBluetooth() ? "yes" : "no"));
 
         } else {
             super.editProperty(scan, property);

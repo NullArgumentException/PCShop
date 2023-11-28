@@ -30,11 +30,8 @@ public non-sealed class Monitor extends Product {
 
     @Override
     public String toString() {
-        return "Monitor [" +
-                super.toString() +
-                ", Refresh rate= " + refreshRate +
-                ", Resolution= " + resolution +
-                "]";
+        return String.format("Monitor [%s, Refresh rate: %d, Resolution: %s]",
+                super.toString(), refreshRate, resolution);
     }
 
     public void editProperty(Scanner scan, int property) {

@@ -59,7 +59,9 @@ public class ShopCtrl {
             }
         } catch (InputMismatchException e) {
             System.err.println("Input unrecognised, please choose a number from the list.");
-            menuSelection(scan);
+            scan.nextLine();
+            wait(1000);
+            mainMenu(scan);
         }
     }
 
@@ -104,6 +106,7 @@ public class ShopCtrl {
             }
         } catch (InputMismatchException e) {
             System.err.println("Input unrecognised, please choose a number from the list.");
+            scan.nextLine();
             wait(1000);
             addProduct(scan);
         }
@@ -238,6 +241,10 @@ public class ShopCtrl {
 
     private void listProducts() {
         // TODO: list up to 5 products and ask the user to either choose one or show the next 5
+        for (Product p:
+             pList) {
+            System.out.println(p);
+        }
     }
 
     // pauses code execution for the given amount of time in milliseconds
