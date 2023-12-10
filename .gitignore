@@ -2,8 +2,6 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-/OOPProjektPCShop.iml
-/.idea/
 
 ### Eclipse ###
 .apt_generated
@@ -31,5 +29,4 @@ bin/
 .DS_Store
 
 ### my ignores ###
-/db/
-/lib/
+.sync.ffs_db

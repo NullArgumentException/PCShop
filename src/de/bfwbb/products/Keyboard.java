@@ -1,10 +1,9 @@
 package de.bfwbb.products;
 
-import de.bfwbb.shop.ShopCtrl;
-
-import java.util.Scanner;
-
 /**
+ * The Keyboard class represents a keyboard product.
+ * It extends the Product class and adds an attribute to indicate whether it has Bluetooth.
+ *
  * @author NullArgumentException
  */
 public non-sealed class Keyboard extends Product {
@@ -14,39 +13,29 @@ public non-sealed class Keyboard extends Product {
         return hasBluetooth;
     }
 
-    private void setHasBluetooth(boolean hasBluetooth) {
+    public void setHasBluetooth(boolean hasBluetooth) {
         this.hasBluetooth = hasBluetooth;
     }
 
+    /**
+     * Returns a string representation of the Keyboard object. The string representation
+     * includes the brand, model, and price from the {@link Product} superclass, as well
+     * as the Bluetooth attribute of the Keyboard.
+     *
+     * @return The string representation of the Keyboard object.
+     */
     @Override
     public String toString() {
-        return String.format("Keyboard [%s, Bluetooth: %s]", super.toString(), ((hasBluetooth) ? "yes" : "no"));
+        return String.format("Keyboard%n    %s%n    [Bluetooth]: %s", super.toString(), ((hasBluetooth) ? "yes" : "no"));
     }
 
+    /**
+     * Returns the total number of fields in the current class and its superclass.
+     *
+     * @return The number of fields.
+     */
     @Override
-    public void editProperty(Scanner scan, int property) {
-        if (property > super.getFieldCount()) {
-            System.out.println("Does the keyboard have bluetooth? y/n");
-
-            switch (scan.next()) {
-                case "y", "Y" -> setHasBluetooth(true);
-                case "n", "N" -> setHasBluetooth(false);
-                default -> {
-                    System.err.println("Input unrecognised, please try again.");
-                    ShopCtrl.wait(500);
-                    editProperty(scan, property);
-                }
-            }
-
-            System.out.println("Bluetooth was set to: " + (getHasBluetooth() ? "yes" : "no"));
-
-        } else {
-            super.editProperty(scan, property);
-        }
-    }
-
-    @Override
-    public int getFieldCount() {
-        return super.getFieldCount() + getClass().getDeclaredFields().length;
+    public int fieldCount() {
+        return super.fieldCount() + getClass().getDeclaredFields().length;
     }
 }

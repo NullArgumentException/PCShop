@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Shop" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="de.bfwbb.shop.Main" />
+    <module name="OOPProjektPCShop" />
+    <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
