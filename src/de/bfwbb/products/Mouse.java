@@ -4,18 +4,26 @@ package de.bfwbb.products;
  * The Mouse class represents a mouse product.
  * It extends the Product class and adds an attribute to indicate whether it is wireless or not.
  *
- * @author NullArgumentException
+ * @author nargex
+ * @see <a href="https://github.com/NullArgumentException/PCShop">GitHub page</a>
  */
 public non-sealed class Mouse extends Product {
     private boolean isWireless;
 
-    public Mouse() {
-    }
-
+    /**
+     * Retrieves the wireless ability of the mouse.
+     *
+     * @return {@code true} if the mouse has wireless connectivity, {@code false} otherwise.
+     */
     public boolean getIsWireless() {
         return isWireless;
     }
 
+    /**
+     * Sets the wireless ability of the mouse.
+     *
+     * @param wireless {@code true} if mouse is wireless or else {@code false}
+     */
     public void setIsWireless(boolean wireless) {
         isWireless = wireless;
     }
@@ -33,7 +41,8 @@ public non-sealed class Mouse extends Product {
     }
 
     /**
-     * Returns the total number of fields in the current class and its superclass.
+     * Retrieves the total count of fields in the current class, including fields inherited
+     * from its superclass.
      *
      * @return The number of fields.
      */

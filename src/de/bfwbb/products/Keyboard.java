@@ -4,15 +4,26 @@ package de.bfwbb.products;
  * The Keyboard class represents a keyboard product.
  * It extends the Product class and adds an attribute to indicate whether it has Bluetooth.
  *
- * @author NullArgumentException
+ * @author nargex
+ * @see <a href="https://github.com/NullArgumentException/PCShop">GitHub page</a>
  */
 public non-sealed class Keyboard extends Product {
     private boolean hasBluetooth;
 
+    /**
+     * Retrieves the Bluetooth ability of the keyboard.
+     *
+     * @return {@code true} if the keyboard has Bluetooth connectivity, {@code false} otherwise.
+     */
     public boolean getHasBluetooth() {
         return hasBluetooth;
     }
 
+    /**
+     * Sets the Bluetooth connectivity status of the keyboard.
+     *
+     * @param hasBluetooth {@code true} for Bluetooth ability 'yes', {@code false} for Bluetooth ability 'no'.
+     */
     public void setHasBluetooth(boolean hasBluetooth) {
         this.hasBluetooth = hasBluetooth;
     }
@@ -26,11 +37,14 @@ public non-sealed class Keyboard extends Product {
      */
     @Override
     public String toString() {
-        return String.format("Keyboard%n    %s%n    [Bluetooth]: %s", super.toString(), ((hasBluetooth) ? "yes" : "no"));
+        return String.format("Keyboard%n    %s%n    [Bluetooth]: %s",
+                             super.toString(),
+                             ((hasBluetooth) ? "yes" : "no"));
     }
 
     /**
-     * Returns the total number of fields in the current class and its superclass.
+     * Retrieves the total count of fields in the current class, including fields inherited
+     * from its superclass.
      *
      * @return The number of fields.
      */

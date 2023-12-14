@@ -7,8 +7,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 /**
  * The Product class represents a generic product.
  * It contains the brand, model, and price of the product.
+ * Only Keyboard, Monitor, Motherboard and Mouse classes are permitted to extend Product.
  *
- * @author NullArgumentException
+ * @author nargex
+ * @see <a href="https://github.com/NullArgumentException/PCShop">GitHub page</a>
  */
 
 // adds a class attribute to the json objects to let the object mapper know which class each object belongs to
@@ -26,29 +28,56 @@ public sealed abstract class Product
     private String model;
     private double price;
 
-    public Product() {
-    }
-
+    /**
+     * Retrieves the brand of the product.
+     *
+     * @return The brand of the product as a String.
+     */
     public String getBrand() {
         return brand;
     }
 
+    /**
+     * Sets the brand of the product.
+     *
+     * @param brand The new brand information to be set as a String.
+     */
     public void setBrand(String brand) {
         this.brand = brand;
     }
 
+    /**
+     * Retrieves the model of the product.
+     *
+     * @return The model of the product as a String.
+     */
     public String getModel() {
         return model;
     }
 
+    /**
+     * Sets the model of the product.
+     *
+     * @param model The new model information to be set as a String.
+     */
     public void setModel(String model) {
         this.model = model;
     }
 
+    /**
+     * Retrieves the price of the product.
+     *
+     * @return The price of the product as a double value.
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Sets the price of the product.
+     *
+     * @param price The new price to be set for the product as a double value.
+     */
     public void setPrice(double price) {
         this.price = price;
     }
@@ -65,9 +94,9 @@ public sealed abstract class Product
     }
 
     /**
-     * Returns the total number of fields in the current class.
+     * Retrieves the count of fields declared in the {@code Product} class.
      *
-     * @return The number of fields.
+     * @return The count of fields declared in the {@code Product} class.
      */
     public int fieldCount() {
         return Product.class.getDeclaredFields().length;

@@ -30,7 +30,8 @@ import java.util.List;
  * It provides methods for managing the terminal window layout, displaying menus,
  * adding, editing, searching, and removing products, and interacting with the user.
  *
- * @author NullArgumentException
+ * @author nargex
+ * @see <a href="https://github.com/NullArgumentException/PCShop">GitHub page</a>
  */
 public class Terminal extends Application {
     // "typing" speed for the animateText() method
@@ -122,15 +123,15 @@ public class Terminal extends Application {
     private void mainMenu() {
         tfCleanup();
         animateText(String.format("""
-                %1$s
-                 PC-Shop                                   Main Menu   by: [%2$s]
-                %1$s
-                 1) Add Product
-                 2) Edit Product
-                 3) Search Product
-                 4) Remove Product
-                 0) Close Shop
-                %1$s""", border, owner));
+                                          %1$s
+                                           PC-Shop                                   Main Menu   by: [%2$s]
+                                          %1$s
+                                           1) Add Product
+                                           2) Edit Product
+                                           3) Search Product
+                                           4) Remove Product
+                                           0) Close Shop
+                                          %1$s""", border, owner));
 
         tfInputFormat("^[0-4]$", "Enter a number from the menu.");
 
@@ -155,15 +156,15 @@ public class Terminal extends Application {
     private void addProduct() {
         tfCleanup();
         animateText(String.format("""
-                %1$s
-                 Choose the type of product to add
-                %1$s
-                 1) Keyboard
-                 2) Monitor
-                 3) Motherboard
-                 4) Mouse
-                 0) Return to main menu
-                %1$s""", border));
+                                          %1$s
+                                           Choose the type of product to add
+                                          %1$s
+                                           1) Keyboard
+                                           2) Monitor
+                                           3) Motherboard
+                                           4) Mouse
+                                           0) Return to main menu
+                                          %1$s""", border));
         tfInputFormat("^[0-4]$", "Enter a number from the menu.");
         tfInput.setOnAction(e -> {
             String in = tfInput.getText();
@@ -195,13 +196,13 @@ public class Terminal extends Application {
             productList.add(product);
 
             animateText(String.format("""
-                    %1$s
-                     Product was added to the shop
-                    %1$s
-                     %2$s
-                    %1$s
-                     Do you want to add another Product?
-                    %1$s""", border, product));
+                                              %1$s
+                                               Product was added to the shop
+                                              %1$s
+                                               %2$s
+                                              %1$s
+                                               Do you want to add another Product?
+                                              %1$s""", border, product));
 
             tfInputFormat("^[yYnN]$", "Enter 'y' or 'n'.");
 
@@ -230,14 +231,14 @@ public class Terminal extends Application {
             stringBuilder.append(border).append("\n");
             switch (mode) {
                 case "edit" -> stringBuilder.append("""
-                         Choose which product you want to edit
-                        """);
+                                                             Choose which product you want to edit
+                                                            """);
                 case "search" -> stringBuilder.append("""
-                         Select a product from the search results
-                        """);
+                                                               Select a product from the search results
+                                                              """);
                 case "remove" -> stringBuilder.append("""
-                         Choose the product you want to remove
-                        """);
+                                                               Choose the product you want to remove
+                                                              """);
             }
             stringBuilder.append(border).append("\n");
 
@@ -245,20 +246,20 @@ public class Terminal extends Application {
             for (Product p : products) {
                 i++;
                 stringBuilder.append(String.format("""
-                         %d) %s
-                        """, i, p.toString()));
+                                                            %d) %s
+                                                           """, i, p.toString()));
             }
             stringBuilder.append(String.format("""
-                    %1$s
-                     0) Return to main menu
-                    """, border));
+                                                       %1$s
+                                                        0) Return to main menu
+                                                       """, border));
             if (mode.equals("search")) {
                 stringBuilder.append(" s) Search for something else\n");
-                tfInputFormat(String.format("^[0-%ds]{1,%d}$", (i
-                                                                < 10) ? i : 9, String.valueOf(i).length()), "Enter a number from the menu or 's' to search again.");
+                tfInputFormat(String.format("^[0-%ds]{1,%d}$", (i < 10) ? i : 9, String.valueOf(i).length()),
+                              "Enter a number from the menu or 's' to search again.");
             } else {
-                tfInputFormat(String.format("^[0-%d]{1,%d}$", (i
-                                                               < 10) ? i : 9, String.valueOf(i).length()), "Enter a number from the menu.");
+                tfInputFormat(String.format("^[0-%d]{1,%d}$", (i < 10) ? i : 9, String.valueOf(i).length()),
+                              "Enter a number from the menu.");
             }
             stringBuilder.append(border);
             animateText(stringBuilder.toString());
@@ -281,11 +282,11 @@ public class Terminal extends Application {
             });
         } else {
             animateText(String.format("""
-                    %1$s
-                     There are no products to list
-                    %1$s
-                     Press Enter to go back to the main menu
-                    %1$s""", border));
+                                              %1$s
+                                               There are no products to list
+                                              %1$s
+                                               Press Enter to go back to the main menu
+                                              %1$s""", border));
             tfInputFormat("", "Press Enter");
             tfInput.setOnAction(e -> mainMenu());
         }
@@ -300,34 +301,34 @@ public class Terminal extends Application {
         tfCleanup();
         StringBuilder propMenu = new StringBuilder();
         propMenu.append(String.format("""
-                %1$s
-                 Choose which property to edit
-                %1$s
-                 %2$s
-                %1$s
-                 1) Brand
-                 2) Model name
-                 3) Price
-                 """, border, product));
+                                              %1$s
+                                               Choose which property to edit
+                                              %1$s
+                                               %2$s
+                                              %1$s
+                                               1) Brand
+                                               2) Model name
+                                               3) Price
+                                               """, border, product));
         switch (product) {
             case Keyboard ignored -> propMenu.append("""
-                     4) Bluetooth
-                    """);
+                                                              4) Bluetooth
+                                                             """);
             case Monitor ignored -> propMenu.append("""
-                     4) Refresh rate
-                     5) Resolution
-                    """);
+                                                             4) Refresh rate
+                                                             5) Resolution
+                                                            """);
             case Motherboard ignored -> propMenu.append("""
-                     4) Chipset
-                    """);
+                                                                 4) Chipset
+                                                                """);
             case Mouse ignored -> propMenu.append("""
-                     4) Wireless
-                    """);
+                                                           4) Wireless
+                                                          """);
         }
         propMenu.append(String.format("""
-                 0) Return to main menu
-                 s) Select a different product to edit
-                %1$s""", border));
+                                               0) Return to main menu
+                                               s) Select a different product to edit
+                                              %1$s""", border));
         animateText(propMenu.toString());
         tfInputFormat(String.format("^[0-%ds]$", product.fieldCount()), "Enter a number from the menu.");
         tfInput.setOnAction(e -> {
@@ -355,9 +356,11 @@ public class Terminal extends Application {
         switch (property) {
             case 1 -> {
                 animateText(String.format("""
-                        %1$s
-                         What is the name of the brand? %2$s
-                        %1$s""", border, isNewProduct ? "" : String.format("%n Currently set to: '%s'", product.getBrand())));
+                                                  %1$s
+                                                   What is the name of the brand? %2$s
+                                                  %1$s""", border,
+                                          isNewProduct ? "" : String.format("%n Currently set to: '%s'",
+                                                                            product.getBrand())));
                 tfInputFormat(".*", "Enter the brand name.");
                 tfInput.setOnAction(e -> {
                     String in = tfInput.getText();
@@ -373,9 +376,11 @@ public class Terminal extends Application {
             }
             case 2 -> {
                 animateText(String.format("""
-                        %1$s
-                         What is the name of the model? %2$s
-                        %1$s""", border, isNewProduct ? "" : String.format("%n Currently set to: '%s'", product.getModel())));
+                                                  %1$s
+                                                   What is the name of the model? %2$s
+                                                  %1$s""", border,
+                                          isNewProduct ? "" : String.format("%n Currently set to: '%s'",
+                                                                            product.getModel())));
                 tfInputFormat(".*", "Enter the model name.");
                 tfInput.setOnAction(e -> {
                     String in = tfInput.getText();
@@ -391,9 +396,11 @@ public class Terminal extends Application {
             }
             case 3 -> {
                 animateText(String.format("""
-                        %1$s
-                         What is the price of the product? %2$s
-                        %1$s""", border, isNewProduct ? "" : String.format("%n Currently set to: '%s€'", product.getPrice())));
+                                                  %1$s
+                                                   What is the price of the product? %2$s
+                                                  %1$s""", border,
+                                          isNewProduct ? "" : String.format("%n Currently set to: '%s€'",
+                                                                            product.getPrice())));
                 // only positive int/double in the text field
                 tfInputFormat("^\\d+[,.]?\\d*$", "Enter a number.");
                 tfInput.setOnAction(actionEvent -> {
@@ -412,9 +419,11 @@ public class Terminal extends Application {
                 switch (product) {
                     case Keyboard p -> {
                         animateText(String.format("""
-                                %1$s
-                                 Does the Keyboard have bluetooth connectivity? %2$s
-                                %1$s""", border, isNewProduct ? "" : String.format("%n Currently set to: '%s'", p.getHasBluetooth() ? "yes" : "no")));
+                                                          %1$s
+                                                           Does the Keyboard have bluetooth connectivity? %2$s
+                                                          %1$s""", border,
+                                                  isNewProduct ? "" : String.format("%n Currently set to: '%s'",
+                                                                                    p.getHasBluetooth() ? "yes" : "no")));
                         // allow only 'y' or 'n' as input
                         tfInputFormat("^[yYnN]$", "Enter 'y' or 'n'.");
                         tfInput.setOnAction(e -> {
@@ -424,7 +433,8 @@ public class Terminal extends Application {
                                 if (isNewProduct) {
                                     newProduct(product, property + 1);
                                 } else {
-                                    editProductReturn(p, String.format("Bluetooth was set to '%s'", (p.getHasBluetooth() ? "yes" : "no")));
+                                    editProductReturn(p, String.format("Bluetooth was set to '%s'",
+                                                                       (p.getHasBluetooth() ? "yes" : "no")));
                                 }
                             }
                         });
@@ -433,9 +443,10 @@ public class Terminal extends Application {
                         switch (property) {
                             case 4 -> {
                                 animateText(String.format("""
-                                        %1$s
-                                         What is the refresh rate of the monitor? %2$s
-                                        %1$s""", border, isNewProduct ? "" : String.format("%n Currently set to: '%sHz'", p.getRefreshRate())));
+                                                                  %1$s
+                                                                   What is the refresh rate of the monitor? %2$s
+                                                                  %1$s""", border, isNewProduct ? "" : String.format(
+                                        "%n Currently set to: '%sHz'", p.getRefreshRate())));
                                 // allow only positive integers as input
                                 tfInputFormat("^\\d+", "Enter a number.");
                                 tfInput.setOnAction(e -> {
@@ -445,16 +456,19 @@ public class Terminal extends Application {
                                         if (isNewProduct) {
                                             newProduct(product, property + 1);
                                         } else {
-                                            editProductReturn(p, String.format("Refresh rate was set to '%dHz'", p.getRefreshRate()));
+                                            editProductReturn(p, String.format("Refresh rate was set to '%dHz'",
+                                                                               p.getRefreshRate()));
                                         }
                                     }
                                 });
                             }
                             case 5 -> {
                                 animateText(String.format("""
-                                        %1$s
-                                         What is the resolution of the monitor? %2$s
-                                        %1$s""", border, isNewProduct ? "" : String.format("%n Currently set to: '%s'", p.getResolution())));
+                                                                  %1$s
+                                                                   What is the resolution of the monitor? %2$s
+                                                                  %1$s""", border,
+                                                          isNewProduct ? "" : String.format("%n Currently set to: '%s'",
+                                                                                            p.getResolution())));
                                 // allow resolution only in the correct format
                                 tfInputFormat("^\\d+(x\\d*)?$", "Enter the resolution as <horizontal>x<vertical>.");
                                 tfInput.setOnAction(e -> {
@@ -464,7 +478,8 @@ public class Terminal extends Application {
                                         if (isNewProduct) {
                                             newProduct(product, property + 1);
                                         } else {
-                                            editProductReturn(p, String.format("Resolution was set to: '%s'", p.getResolution()));
+                                            editProductReturn(p, String.format("Resolution was set to: '%s'",
+                                                                               p.getResolution()));
                                         }
                                     }
                                 });
@@ -473,9 +488,11 @@ public class Terminal extends Application {
                     }
                     case Motherboard p -> {
                         animateText(String.format("""
-                                %1$s
-                                 What chipset does the Motherboard have? %2$s
-                                %1$s""", border, isNewProduct ? "" : String.format("%n Currently set to: '%s'", p.getChipset())));
+                                                          %1$s
+                                                           What chipset does the Motherboard have? %2$s
+                                                          %1$s""", border,
+                                                  isNewProduct ? "" : String.format("%n Currently set to: '%s'",
+                                                                                    p.getChipset())));
                         // allows any String
                         tfInputFormat(".*", "Enter the chipset.");
                         tfInput.setOnAction(e -> {
@@ -492,9 +509,11 @@ public class Terminal extends Application {
                     }
                     case Mouse p -> {
                         animateText(String.format("""
-                                %1$s
-                                 Is the Mouse wireless? %2$s
-                                %1$s""", border, isNewProduct ? "" : String.format("%n Currently set to: '%s'", p.getIsWireless() ? "yes" : "no")));
+                                                          %1$s
+                                                           Is the Mouse wireless? %2$s
+                                                          %1$s""", border,
+                                                  isNewProduct ? "" : String.format("%n Currently set to: '%s'",
+                                                                                    p.getIsWireless() ? "yes" : "no")));
                         // allow only 'y' or 'n' as input
                         tfInputFormat("^[yYnN]$", "Enter 'y' for yes or 'n' for no.");
                         tfInput.setOnAction(e -> {
@@ -504,7 +523,8 @@ public class Terminal extends Application {
                                 if (isNewProduct) {
                                     newProduct(product, property + 1);
                                 } else {
-                                    editProductReturn(p, String.format("Wireless was set to '%s'", p.getIsWireless() ? "yes" : "no"));
+                                    editProductReturn(p, String.format("Wireless was set to '%s'",
+                                                                       p.getIsWireless() ? "yes" : "no"));
                                 }
                             }
                         });
@@ -525,15 +545,15 @@ public class Terminal extends Application {
     private void editProductReturn(Product product, String str) {
         tfCleanup();
         animateText(String.format("""
-                %1$s
-                 %2$s
-                %1$s
-                 %3$s
-                %1$s
-                 1) Edit another property
-                 2) Select a different product to edit
-                 0) Return to main menu
-                %1$s""", border, str, product));
+                                          %1$s
+                                           %2$s
+                                          %1$s
+                                           %3$s
+                                          %1$s
+                                           1) Edit another property
+                                           2) Select a different product to edit
+                                           0) Return to main menu
+                                          %1$s""", border, str, product));
         tfInputFormat("^[0-2]$", "Enter a number from the menu.");
         tfInput.setOnAction(e -> {
             String in = tfInput.getText();
@@ -553,12 +573,12 @@ public class Terminal extends Application {
     private void searchProduct() {
         tfCleanup();
         animateText(String.format("""
-                %1$s
-                 What do you want to search for?
-                %1$s
-                 0) Return to main menu
-                %1$s
-                """, border));
+                                          %1$s
+                                           What do you want to search for?
+                                          %1$s
+                                           0) Return to main menu
+                                          %1$s
+                                          """, border));
         tfInputFormat(".*", "Enter what to search for.");
         tfInput.setOnAction(e -> {
             String in = tfInput.getText().toLowerCase();
@@ -582,7 +602,9 @@ public class Terminal extends Application {
         ArrayList<Product> results;
         results = new ArrayList<>(productList.stream().filter(product -> {
             boolean containsStr = product.getBrand().toLowerCase().contains(str)
-                                  || product.getModel().toLowerCase().contains(str)
+                                  || product.getModel()
+                                            .toLowerCase()
+                                            .contains(str)
                                   || String.valueOf(product.getPrice()).contains(str);
             if (containsStr) return true;
             switch (product) {
@@ -618,16 +640,16 @@ public class Terminal extends Application {
     private void searchSelection(Product product) {
         tfCleanup();
         animateText(String.format("""
-                %1$s
-                 Choose what to do with the product
-                %1$s
-                 %2$s
-                %1$s
-                 1) Edit product
-                 2) Remove product
-                 3) Search for something else
-                 0) Return to main menu
-                %1$s""", border, product));
+                                          %1$s
+                                           Choose what to do with the product
+                                          %1$s
+                                           %2$s
+                                          %1$s
+                                           1) Edit product
+                                           2) Remove product
+                                           3) Search for something else
+                                           0) Return to main menu
+                                          %1$s""", border, product));
         tfInputFormat("^[0-3]$", "Enter a number from the menu.");
         tfInput.setOnAction(e -> {
             String in = tfInput.getText();
@@ -650,15 +672,15 @@ public class Terminal extends Application {
     private void removeProduct(Product product) {
         tfCleanup();
         animateText(String.format("""
-                %1$s
-                 Are you sure you want to remove this product?
-                %1$s
-                 %2$s
-                %1$s
-                 1) Confirm removal
-                 2) Select a different product to remove
-                 0) Return to main menu
-                %1$s""", border, product));
+                                          %1$s
+                                           Are you sure you want to remove this product?
+                                          %1$s
+                                           %2$s
+                                          %1$s
+                                           1) Confirm removal
+                                           2) Select a different product to remove
+                                           0) Return to main menu
+                                          %1$s""", border, product));
         tfInputFormat("^[0-2]$", "Enter a number from the menu.");
         tfInput.setOnAction(e -> {
             String in = tfInput.getText();
@@ -682,9 +704,9 @@ public class Terminal extends Application {
     private void closeShop() {
         tfCleanup();
         animateText(String.format("""
-                %1$s
-                 Do you really want to exit the shop?
-                %1$s""", border));
+                                          %1$s
+                                           Do you really want to exit the shop?
+                                          %1$s""", border));
         tfInputFormat("^[yYnN]$", "Enter 'y' or 'n'.");
         tfInput.setOnAction(e -> {
             String in = tfInput.getText();

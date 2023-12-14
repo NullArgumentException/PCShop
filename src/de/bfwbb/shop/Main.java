@@ -11,13 +11,22 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * @author NullArgumentException
+ * @author nargex
+ * @see <a href="https://github.com/NullArgumentException/PCShop">GitHub page</a>
  */
 public class Main extends Application {
 
     private static final String JSON_PATH = "db/products.json";
     private static Terminal terminal;
 
+    /**
+     * The main method reads existing Product objects from the products.json file and hands them to the terminal window
+     * which is launched right afterwards.
+     * After the window is closed or the user chooses to exit the shop, all of the Product objects currently residing
+     * in the array list are written to the products.json
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         File jsonFile = new File(JSON_PATH);
         ObjectMapper objectMapper = new ObjectMapper();
@@ -35,7 +44,7 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
 
-        terminal = new Terminal("nargex", products);
+        terminal = new Terminal("Stefan Schubmehl", products);
 
         launch(args);
 
@@ -49,8 +58,13 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Starts up the terminal window.
+     *
+     * @param primaryStage The primary stage of the JavaFX application.
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         terminal.start(primaryStage);
     }
 }

@@ -4,27 +4,45 @@ package de.bfwbb.products;
  * The Monitor class represents a monitor product.
  * It extends the Product class and adds attributes to store the refresh rate and resolution of the monitor.
  *
- * @author NullArgumentException
+ * @author nargex
+ * @see <a href="https://github.com/NullArgumentException/PCShop">GitHub page</a>
  */
 public non-sealed class Monitor extends Product {
     private int refreshRate;
     private String resolution;
 
-    public Monitor() {
-    }
-
+    /**
+     * Retrieves the refresh rate of the monitor.
+     *
+     * @return The refresh rate of the monitor in Hertz (Hz).
+     */
     public int getRefreshRate() {
         return refreshRate;
     }
 
+    /**
+     * Sets the refresh rate of the monitor.
+     *
+     * @param refreshRate The new refresh rate to be set for the monitor, measured in Hertz (Hz).
+     */
     public void setRefreshRate(int refreshRate) {
         this.refreshRate = refreshRate;
     }
 
+    /**
+     * Retrieves the resolution of the monitor.
+     *
+     * @return The display resolution as a String.
+     */
     public String getResolution() {
         return resolution;
     }
 
+    /**
+     * Sets the resolution of the monitor.
+     *
+     * @param resolution The new display resolution to be set as a String.
+     */
     public void setResolution(String resolution) {
         this.resolution = resolution;
     }
@@ -38,11 +56,15 @@ public non-sealed class Monitor extends Product {
      */
     @Override
     public String toString() {
-        return String.format("Monitor%n    %s%n    [Refresh rate]: %dHz%n    [Resolution]: %s", super.toString(), refreshRate, resolution);
+        return String.format("Monitor%n    %s%n    [Refresh rate]: %dHz%n    [Resolution]: %s",
+                             super.toString(),
+                             refreshRate,
+                             resolution);
     }
 
     /**
-     * Returns the total number of fields in the current class and its superclass.
+     * Retrieves the total count of fields in the current class, including fields inherited
+     * from its superclass.
      *
      * @return The number of fields.
      */
