@@ -44,7 +44,7 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
 
-        terminal = new Terminal("Stefan Schubmehl", products);
+        terminal = new Terminal("nargex", products);
 
         launch(args);
 
